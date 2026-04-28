@@ -1,0 +1,54 @@
+============================================================
+EIGENFACE RECOGNITION
+Testing: s21 (10th photo)
+============================================================
+
+[1] Loading dataset...
+Found 24 persons (from s21 to s44)
+Loaded 240 images, each 10304 pixels
+Image shape: 112x92
+[2] Preparing training data (first 9 images)...
+    Training: 216 images
+[3] Preparing test image (10th photo of s21)...
+[4] Computing mean face...
+[5] Centering data...
+[6] Computing FULL SVD...
+    Computing full SVD with 216 components...
+        Computed 50/216 components...
+        Computed 100/216 components...
+        Computed 150/216 components...
+        Computed 200/216 components...
+        Computed 216/216 components...
+
+    Total components available: 216
+    Selected k = 108 (retains 95.08% variance)
+[7] Projecting training images...
+[8] Recognizing test image...
+
+============================================================
+RESULT
+============================================================
+True: s21
+Predicted: s21
+
+✓ SUCCESS!
+
+Distance to closest match: 0.0000
+
+[9] Reconstructing test image...
+Reconstruction error: 1553.9124
+
+[10] Displaying results...
+
+============================================================
+SUMMARY
+============================================================
+Persons: s21 to s44 (24 persons)
+Training: 24 × 9 = 216 images
+Testing: 10th photo of s21
+Original dimension: 10304 pixels
+Reduced dimension (k): 108
+Variance retained: 95.08%
+Result: CORRECT
+Time: 1161.04 seconds
+============================================================
