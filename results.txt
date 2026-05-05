@@ -52,3 +52,68 @@ Variance retained: 95.08%
 Result: CORRECT
 Time: 1161.04 seconds
 ============================================================
+
+
+
+
+
+
+
+
+============================================================
+EIGENFACE RECOGNITION
+Testing: s44 (10th photo)
+============================================================
+
+[1] Loading dataset...
+Found 44 persons (from s1 to s9)
+Loaded 440 images, each 10304 pixels
+Image shape: 112x92
+[2] Preparing training data (first 9 images)...
+    Training: 396 images
+[3] Preparing test image (10th photo of s44)...
+[4] Computing mean face...
+[5] Centering data...
+[6] Computing FULL SVD...
+    Computing full SVD with 396 components...
+        Computed 50/396 components...
+        Computed 100/396 components...
+        Computed 150/396 components...
+        Computed 200/396 components...
+        Computed 250/396 components...
+        Computed 300/396 components...
+        Computed 350/396 components...
+        Computed 396/396 components...
+
+    Total components available: 396
+    Selected k = 175 (retains 95.04% variance)
+[7] Projecting training images...
+[8] Recognizing test image...
+
+============================================================
+RESULT
+============================================================
+True: s44
+Predicted: s1
+
+✗ FAILURE!
+
+Distance to closest match: 0.0000
+
+[9] Reconstructing test image...
+Reconstruction error: 1832.5019
+
+[10] Displaying results...
+
+============================================================
+SUMMARY
+============================================================
+Persons: s1 to s9 (44 persons)
+Training: 44 × 9 = 396 images
+Testing: 10th photo of s44
+Original dimension: 10304 pixels
+Reduced dimension (k): 175
+Variance retained: 95.04%
+Result: WRONG
+Time: 3705.73 seconds
+============================================================

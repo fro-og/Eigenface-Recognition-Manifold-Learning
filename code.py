@@ -7,7 +7,7 @@ import time
 # ==================================================
 # GLOBAL SETTINGS
 # ==================================================
-PERSON_TO_TEST = "s21"
+PERSON_TO_TEST = "s41"
 VARIANCE_RETAINED = 0.95
 
 # ==================================================
@@ -70,14 +70,14 @@ def manual_power_iteration(A, max_iter=100):
     n = A.shape[0]
     v = np.random.rand(n)
     v = v / manual_norm(v)
-    
+
     for _ in range(max_iter):
         Av = manual_matmul(A, v.reshape(-1, 1)).flatten()
         v_new = Av / manual_norm(Av)
         if manual_norm(v_new - v) < 1e-8:
             return np.dot(Av, v) / np.dot(v, v), v_new
         v = v_new
-    
+
     return np.dot(manual_matmul(A, v.reshape(-1, 1)).flatten(), v) / np.dot(v, v), v
 
 def manual_svd_full(A):
@@ -136,18 +136,21 @@ def manual_distance(a, b):
 # ==================================================
 
 def load_dataset(dataset_path="dataset", images_per_person=10):
-    """Load images from s21, s22, ... folders"""
+    """Load images from s1, s2, ... folders"""
     images = []
     labels = []
     person_names = []
     img_shape = None
     
-    # Get all folders and filter only s21 and above
+    # Get all folders
     all_folders = sorted([f for f in os.listdir(dataset_path) 
                          if os.path.isdir(os.path.join(dataset_path, f))])
     
     # Filter to keep only s21 and above
-    folders = [f for f in all_folders if int(f[1:]) >= 21]
+    # folders = [f for f in all_folders if int(f[1:]) >= 21]
+
+    # Train on the fuul set of data
+    folders = all_folders
     
     print(f"Found {len(folders)} persons (from {folders[0]} to {folders[-1]})")
     
@@ -190,7 +193,7 @@ def main():
     print(f"Testing: {PERSON_TO_TEST} (10th photo)")
     print("="*60)
     
-    # Load data (only s21 and above)
+    # Load data
     print("\n[1] Loading dataset...")
     X_all, y_all, person_names, img_shape = load_dataset()
     
@@ -271,7 +274,7 @@ def main():
     min_idx = -1
     
     for i in range(train_proj.shape[1]):
-        dist = manual_distance(test_proj[:, i:i+1], train_proj[:, i:i+1])
+        dist = manual_distance(test_proj, train_proj[:, i:i+1])
         if dist < min_dist:
             min_dist = dist
             min_idx = i
